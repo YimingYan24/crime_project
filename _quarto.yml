@@ -37,7 +37,7 @@ website:
         text: Welcome
       - section: analysis/index.qmd
         contents:
-          - analysis/data-analysis.ipynb
+          - analysis/crime-by-type-2023.ipynb
 
 format:
   html:
