@@ -38,7 +38,7 @@ website:
       - about.qmd
       - section: analysis/index.qmd
         contents:
-          - analysis/data-analysis.qmd
+          - analysis/data-analysis.ipynb
 
 format:
   html:
