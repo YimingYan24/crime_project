@@ -1,34 +1,32 @@
 ---
-title: "MUSA 550 Final Project Template"
-subtitle: "An example website demonstrating the power of Quarto for sharing analyses on the web"
+title: "Crime Trends and Socioeconomic Analysis in Philadelphia"
+subtitle: "MUSA 550 Final Project"
 ---
 
-## Welcome!
+## Welcome to Our Analysis!
 
-We can create beautiful websites that describe complex technical analyses in Python using [Quarto](https://quarto.org) 
-and deploy them online using [GitHub Pages](https://pages.github.com/). This combination of tools is a really powerful way 
-to create and share your work. This website is a demo that is meant to be used to create your own Quarto website for the 
-final project in MUSA 550. 
+In this project, we delve into the intricate relationship between crime trends and socioeconomic factors in Philadelphia. Utilizing advanced analytical techniques, we aim to uncover patterns and insights that can help in understanding and potentially mitigating crime in urban areas.
 
-Quarto is a relatively new tool, but is becoming popular quickly. It's a successor 
-to the Rmarkdown ecosystem that combines functionality into a single tool and also extends its computation power to other
-languages. Most importantly for us, Quarto supports executing Python code, allowing us to convert Jupyter notebooks to HTML and share them online.  
+Our analysis is powered by [Quarto](https://quarto.org), enabling us to integrate Python code seamlessly with our narrative, and our findings are shared online via [GitHub Pages](https://pages.github.com). This platform allows us to present a comprehensive and interactive exploration of crime data and socioeconomic variables.
 
-::: {.callout-important}
-This template site, including the layout it uses, is just a suggested place to start! For your final project, you're welcome (and encouraged) to 
-make as many changes as you like to best fit your project.
+::: {.callout-note}
+Our project is a culmination of extensive research and data analysis. While this site serves as a primary mode of dissemination, we encourage viewers to explore the data and methodologies in depth for a richer understanding.
 :::
 
-## Find out more
+## Project Overview
 
-The code for this repository is hosted on our course's GitHub page: [https://github.com/MUSA-550-Fall-2023/quarto-website-template](https://github.com/MUSA-550-Fall-2023/quarto-website-template).
+Here, we provide a brief overview of our project's objectives, the datasets used, and the analytical methods employed. 
 
-We covered the basics of getting started with Quarto and GitHub Pages in week 9. Take a look at
-[the slides for lecture 9A](https://musa-550-fall-2023.github.io/content/week-9/lecture-9A.html) to find out more.
+- **Objective**: Our main goal is to understand how various socioeconomic factors correlate with crime trends in Philadelphia.
+- **Data Sources**: We utilize public datasets from the Philadelphia Police Department, U.S. Census data, and other relevant sources.
+- **Methodology**: Our approach includes data cleaning, exploratory data analysis, statistical modeling, and spatial analysis using Python.
 
+## In-Depth Analysis
 
+This section dives deep into the specifics of our analysis. We break down our approach into several key components:
 
+1. **Data Preparation and Cleaning**: Details on how we processed the raw data.
+2. **Exploratory Data Analysis (EDA)**: Initial findings and patterns observed from the data.
+3. **Statistical Analysis**: Results from various statistical tests and models.
+4. **Spatial Analysis**: Geographic patterns and insights derived from the data.
 
-
-
- 

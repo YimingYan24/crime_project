@@ -5,17 +5,17 @@ project:
     port: 3333
 
 website:
-  title: "MUSA 550 Quarto Template"
-  site-url: "https://musa-550-fall-2023.github.io/quarto-website-template" 
-  repo-url: https://github.com/MUSA-550-Fall-2023/quarto-website-template 
+  title: "Crime Trends and Socioeconomic Analysis in Philadelphia"
+  site-url: "https://musa-550-fall-2023.github.io/final-project-yiming-yan"
+  repo-url: https://github.com/MUSA-550-Fall-2023/final-project-yiming-yan
   repo-actions: [source]
 
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
-    left: "&copy; CC-Nick Hand, 2023"
+    left: "&copy; Yiming Yan, 2023"
 
   sidebar:
-    logo: "images/course-icon.png"
+    logo: "images/philadelphia-logo.png"
     pinned: true
     align: center
     tools: 
@@ -23,11 +23,11 @@ website:
         href: https://nickhand.dev
         text: "Personal Website"
       - icon: github
-        href: https://github.com/MUSA-550-Fall-2023/
-        text: "MUSA 550 GitHub"
+        href: https://github.com/MUSA-550-Fall-2023/final-project-yiming-yan
+        text: "Project GitHub"
       - icon: twitter
         href: https://twitter.com/nicholashand
-        text: "Nick Hand Twitter"         
+        text: "Nick Hand Twitter"
 
     style: "docked"
     search: true
@@ -38,10 +38,7 @@ website:
       - about.qmd
       - section: analysis/index.qmd
         contents:
-          - analysis/1-python-code-blocks.qmd 
-          - analysis/2-static-images.ipynb
-          - analysis/3-altair-hvplot.ipynb
-          - analysis/4-folium.ipynb
+          - analysis/data-analysis.qmd
 
 format:
   html:
@@ -51,7 +48,3 @@ format:
     code-copy: true
     code-overflow: wrap
     toc: true
-
-
-
-
