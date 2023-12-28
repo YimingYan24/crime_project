@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Crime Trends and Socioeconomic Analysis in Philadelphia – crime-by-type-2023</title>
+<title>Crime Trends and Socioeconomic Analysis in Philadelphia - Explorative Visualization and Analysis of 2023 Philadelphia Crime Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -92,6 +92,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -106,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/crime-by-type-2023.html">analysis/index.qmd</a></li><li class="breadcrumb-item"><a href="../analysis/crime-by-type-2023.html">crime-by-type-2023.html</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../analysis/crime-by-type-2023.html">analysis/index.qmd</a></li><li class="breadcrumb-item"><a href="../analysis/crime-by-type-2023.html">Explorative Visualization and Analysis of 2023 Philadelphia Crime Data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -154,7 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../analysis/crime-by-type-2023.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">crime-by-type-2023.html</span></a>
+ <span class="menu-text">Explorative Visualization and Analysis of 2023 Philadelphia Crime Data</span></a>
   </div>
 </li>
       </ul>
@@ -165,40 +168,192 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quick-overview-of-crime-data" id="toc-quick-overview-of-crime-data" class="nav-link active" data-scroll-target="#quick-overview-of-crime-data">Quick Overview of Crime Data</a></li>
+  <li><a href="#categorize-indicents-into-various-types" id="toc-categorize-indicents-into-various-types" class="nav-link" data-scroll-target="#categorize-indicents-into-various-types">Categorize Indicents into Various Types</a></li>
+  <li><a href="#visualize-the-street-poles" id="toc-visualize-the-street-poles" class="nav-link" data-scroll-target="#visualize-the-street-poles">Visualize the Street Poles</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MUSA-550-Fall-2023/final-project-yiming-yan/blob/main/analysis/crime-by-type-2023.ipynb" class="toc-action">View source</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Explorative Visualization and Analysis of 2023 Philadelphia Crime Data</h1>
+</div>
 
 
-<div class="cell" data-execution_count="6">
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This notebook presents an explorative analysis of the 2023 crime data from Philadelphia. The analysis includes various types of incidents, with a focus on grouping them by incident type. We will also visualize the coordinates of each incident spot to observe spatial patterns and trends in the data. The goal is to gain deeper insights into the distribution and nature of crime incidents across different areas of Philadelphia.</p>
+<p><em>Inspired by: <a href="https://carlessanchezalonso.github.io/2021/philadelphia-crime/">Exploratory Data Analysis of Philadelphia Crime Data</a></em></p>
+<section id="quick-overview-of-crime-data" class="level3">
+<h3 class="anchored" data-anchor-id="quick-overview-of-crime-data">Quick Overview of Crime Data</h3>
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> geopandas <span class="im">as</span> gpd</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> shapely.geometry <span class="im">import</span> Point</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>incidents <span class="op">=</span> pd.read_csv(<span class="st">'../data/incidents_part1_part2.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>incidents <span class="op">=</span> pd.read_csv(<span class="st">'../data/incidents_part1_part2.csv'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>incidents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">objectid</th>
+<th data-quarto-table-cell-role="th">dc_dist</th>
+<th data-quarto-table-cell-role="th">psa</th>
+<th data-quarto-table-cell-role="th">dispatch_date_time</th>
+<th data-quarto-table-cell-role="th">dispatch_date</th>
+<th data-quarto-table-cell-role="th">dispatch_time</th>
+<th data-quarto-table-cell-role="th">hour</th>
+<th data-quarto-table-cell-role="th">dc_key</th>
+<th data-quarto-table-cell-role="th">location_block</th>
+<th data-quarto-table-cell-role="th">ucr_general</th>
+<th data-quarto-table-cell-role="th">text_general_code</th>
+<th data-quarto-table-cell-role="th">point_x</th>
+<th data-quarto-table-cell-role="th">point_y</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>151849</td>
+<td>22</td>
+<td>NaN</td>
+<td>2018-12-08 07:16:00+00</td>
+<td>2018-12-08</td>
+<td>02:16:00</td>
+<td>2.0</td>
+<td>2.018221e+11</td>
+<td>N 29th St &amp; Ridge Ave</td>
+<td>300</td>
+<td>Robbery No Firearm</td>
+<td>-75.180807</td>
+<td>39.986800</td>
+<td>39.986800</td>
+<td>-75.180807</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>151850</td>
+<td>16</td>
+<td>NaN</td>
+<td>2018-07-12 01:26:00+00</td>
+<td>2018-07-11</td>
+<td>21:26:00</td>
+<td>21.0</td>
+<td>2.018160e+11</td>
+<td>400 BLOCK N 50th St</td>
+<td>400</td>
+<td>Aggravated Assault No Firearm</td>
+<td>-75.220113</td>
+<td>39.964369</td>
+<td>39.964369</td>
+<td>-75.220113</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>151851</td>
+<td>14</td>
+<td>NaN</td>
+<td>2018-02-26 06:28:00+00</td>
+<td>2018-02-26</td>
+<td>01:28:00</td>
+<td>1.0</td>
+<td>2.018140e+11</td>
+<td>N 20th St &amp; Wyncote Ave</td>
+<td>300</td>
+<td>Robbery Firearm</td>
+<td>-75.150925</td>
+<td>40.057370</td>
+<td>40.057370</td>
+<td>-75.150925</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>151853</td>
+<td>17</td>
+<td>NaN</td>
+<td>2018-02-20 01:02:00+00</td>
+<td>2018-02-19</td>
+<td>20:02:00</td>
+<td>20.0</td>
+<td>2.018170e+11</td>
+<td>2700 BLOCK Reed St</td>
+<td>400</td>
+<td>Aggravated Assault Firearm</td>
+<td>-75.189692</td>
+<td>39.935738</td>
+<td>39.935738</td>
+<td>-75.189692</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>151854</td>
+<td>24</td>
+<td>NaN</td>
+<td>2018-09-20 23:31:00+00</td>
+<td>2018-09-20</td>
+<td>19:31:00</td>
+<td>19.0</td>
+<td>2.018241e+11</td>
+<td>3500 BLOCK FRANKFORD AVE</td>
+<td>500</td>
+<td>Burglary Residential</td>
+<td>-75.102406</td>
+<td>39.997427</td>
+<td>39.997427</td>
+<td>-75.102406</td>
+</tr>
+</tbody>
+</table>
+
 </div>
+</div>
+</div>
+</section>
+<section id="categorize-indicents-into-various-types" class="level3">
+<h3 class="anchored" data-anchor-id="categorize-indicents-into-various-types">Categorize Indicents into Various Types</h3>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>crimes_names <span class="op">=</span> [<span class="st">'Homicide'</span>, <span class="st">'Aggravated'</span>, <span class="st">'Rape'</span>, <span class="st">'Drunkenness'</span>, <span class="st">'Narcotic'</span>, <span class="st">'Prostitution'</span>, <span class="st">'Conduct'</span>, <span class="st">'Fraud'</span>, <span class="st">'Vandalism'</span>, <span class="st">'Robbery'</span>, <span class="st">'Burglary'</span>, <span class="st">'Theft'</span>]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crimes_labels <span class="op">=</span> [<span class="st">'Homicide'</span>, <span class="st">'Aggravated Assault'</span>, <span class="st">'Rape'</span>, <span class="st">'Public Drunkenness'</span>, <span class="st">'Drug Law Violations'</span>, <span class="st">'Prostitution'</span>,<span class="st">'Disorderly Conduct'</span>, <span class="st">'Fraud'</span>, <span class="st">'Vandalism'</span>,<span class="st">'Robbery'</span>,<span class="st">'Burglary'</span>,<span class="st">'Theft'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="visualize-the-street-poles" class="level3">
+<h3 class="anchored" data-anchor-id="visualize-the-street-poles">Visualize the Street Poles</h3>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data_poles <span class="op">=</span> pd.read_csv(<span class="st">'Street_Poles.csv'</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>X_poles <span class="op">=</span> data_poles[<span class="st">'X'</span>].values</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Y_poles <span class="op">=</span> data_poles[<span class="st">'Y'</span>].values</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>))</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_poles,Y_poles,<span class="fl">0.1</span>,c<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">75.3</span>,<span class="op">-</span><span class="fl">74.9</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="fl">39.85</span>,<span class="fl">40.15</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_poles <span class="op">=</span> pd.read_csv(<span class="st">'Street_Poles.csv'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X_poles <span class="op">=</span> data_poles[<span class="st">'X'</span>].values</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Y_poles <span class="op">=</span> data_poles[<span class="st">'Y'</span>].values</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>,<span class="dv">20</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(X_poles,Y_poles,<span class="fl">0.1</span>,c<span class="op">=</span><span class="st">'k'</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">75.3</span>,<span class="op">-</span><span class="fl">74.9</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="fl">39.85</span>,<span class="fl">40.15</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>plt.axis(<span class="st">'off'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(-75.3, -74.9, 39.85, 40.15)</code></pre>
 </div>
@@ -207,62 +362,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#inspired by https://carlessanchezalonso.github.io/2021/philadelphia-crime/</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming incidents is a pandas DataFrame with the relevant data</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>data_crime <span class="op">=</span> incidents</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>mask_area <span class="op">=</span> ((data_crime[<span class="st">'point_x'</span>] <span class="op">&gt;</span> <span class="op">-</span><span class="fl">75.3</span>) <span class="op">&amp;</span> (data_crime[<span class="st">'point_x'</span>] <span class="op">&lt;</span> <span class="op">-</span><span class="fl">74.9</span>) <span class="op">&amp;</span> </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>             (data_crime[<span class="st">'point_y'</span>] <span class="op">&gt;</span> <span class="fl">39.85</span>) <span class="op">&amp;</span> (data_crime[<span class="st">'point_y'</span>] <span class="op">&lt;</span> <span class="fl">40.15</span>))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>data_crime <span class="op">=</span> data_crime[mask_area]</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>max_points <span class="op">=</span> <span class="dv">20000</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>xbins, ybins <span class="op">=</span> <span class="dv">500</span>, <span class="dv">500</span>  <span class="co"># Set the number of bins as integers</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> <span class="fl">0.001</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a unique color for each type of crime</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.get_cmap(<span class="st">'viridis'</span>, <span class="bu">len</span>(crimes_names))</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, crime <span class="kw">in</span> <span class="bu">enumerate</span>(crimes_names):</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter data by crime</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    crime_data <span class="op">=</span> data_crime[data_crime[<span class="st">'text_general_code'</span>].<span class="bu">str</span>.contains(crime)]</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If there are more points than max_points, randomly sample</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(crime_data) <span class="op">&gt;</span> max_points:</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>        crime_data <span class="op">=</span> crime_data.sample(n<span class="op">=</span>max_points)</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    X_crime <span class="op">=</span> crime_data[<span class="st">'point_x'</span>].values</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    Y_crime <span class="op">=</span> crime_data[<span class="st">'point_y'</span>].values</span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    XY_crime <span class="op">=</span> np.array([X_crime, Y_crime]).T</span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create grid for KDE</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    x_min, x_max <span class="op">=</span> X_crime.<span class="bu">min</span>(), X_crime.<span class="bu">max</span>()</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    y_min, y_max <span class="op">=</span> Y_crime.<span class="bu">min</span>(), Y_crime.<span class="bu">max</span>()</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    x_grid <span class="op">=</span> np.linspace(x_min, x_max, xbins)</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    y_grid <span class="op">=</span> np.linspace(y_min, y_max, ybins)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    xx, yy <span class="op">=</span> np.meshgrid(x_grid, y_grid)</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>    xy_sample <span class="op">=</span> np.vstack([xx.ravel(), yy.ravel()]).T</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KDE</span></span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    kde_skl <span class="op">=</span> KernelDensity(bandwidth<span class="op">=</span>bandwidth)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>    kde_skl.fit(XY_crime)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.exp(kde_skl.score_samples(xy_sample))</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    zz <span class="op">=</span> z.reshape(xx.shape)</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X_poles, Y_poles, <span class="fl">0.1</span>, c<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X_crime, Y_crime, <span class="dv">7</span>, c<span class="op">=</span>colors(k), vmax<span class="op">=</span>np.percentile(z, <span class="dv">95</span>))</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    plt.xlim(<span class="op">-</span><span class="fl">75.3</span>, <span class="op">-</span><span class="fl">74.9</span>)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="fl">39.85</span>, <span class="fl">40.15</span>)</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>crime<span class="sc">}</span><span class="ss"> 2023'</span>, size<span class="op">=</span><span class="dv">33</span>, color<span class="op">=</span>colors(k))</span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming incidents is a pandas DataFrame with the relevant data</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data_crime <span class="op">=</span> incidents</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>mask_area <span class="op">=</span> ((data_crime[<span class="st">'point_x'</span>] <span class="op">&gt;</span> <span class="op">-</span><span class="fl">75.3</span>) <span class="op">&amp;</span> (data_crime[<span class="st">'point_x'</span>] <span class="op">&lt;</span> <span class="op">-</span><span class="fl">74.9</span>) <span class="op">&amp;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>             (data_crime[<span class="st">'point_y'</span>] <span class="op">&gt;</span> <span class="fl">39.85</span>) <span class="op">&amp;</span> (data_crime[<span class="st">'point_y'</span>] <span class="op">&lt;</span> <span class="fl">40.15</span>))</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>data_crime <span class="op">=</span> data_crime[mask_area]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>max_points <span class="op">=</span> <span class="dv">20000</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>xbins, ybins <span class="op">=</span> <span class="dv">500</span>, <span class="dv">500</span>  <span class="co"># Set the number of bins as integers</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>bandwidth <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a unique color for each type of crime</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> plt.cm.get_cmap(<span class="st">'viridis'</span>, <span class="bu">len</span>(crimes_names))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, crime <span class="kw">in</span> <span class="bu">enumerate</span>(crimes_names):</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Filter data by crime</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    crime_data <span class="op">=</span> data_crime[data_crime[<span class="st">'text_general_code'</span>].<span class="bu">str</span>.contains(crime)]</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If there are more points than max_points, randomly sample</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(crime_data) <span class="op">&gt;</span> max_points:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        crime_data <span class="op">=</span> crime_data.sample(n<span class="op">=</span>max_points)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    X_crime <span class="op">=</span> crime_data[<span class="st">'point_x'</span>].values</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    Y_crime <span class="op">=</span> crime_data[<span class="st">'point_y'</span>].values</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    XY_crime <span class="op">=</span> np.array([X_crime, Y_crime]).T</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create grid for KDE</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    x_min, x_max <span class="op">=</span> X_crime.<span class="bu">min</span>(), X_crime.<span class="bu">max</span>()</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    y_min, y_max <span class="op">=</span> Y_crime.<span class="bu">min</span>(), Y_crime.<span class="bu">max</span>()</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>    x_grid <span class="op">=</span> np.linspace(x_min, x_max, xbins)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>    y_grid <span class="op">=</span> np.linspace(y_min, y_max, ybins)</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    xx, yy <span class="op">=</span> np.meshgrid(x_grid, y_grid)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    xy_sample <span class="op">=</span> np.vstack([xx.ravel(), yy.ravel()]).T</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># KDE</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    kde_skl <span class="op">=</span> KernelDensity(bandwidth<span class="op">=</span>bandwidth)</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>    kde_skl.fit(XY_crime)</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> np.exp(kde_skl.score_samples(xy_sample))</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    zz <span class="op">=</span> z.reshape(xx.shape)</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">20</span>))</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X_poles, Y_poles, <span class="fl">0.1</span>, c<span class="op">=</span><span class="st">'k'</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    plt.scatter(X_crime, Y_crime, <span class="dv">7</span>, c<span class="op">=</span>colors(k), vmax<span class="op">=</span>np.percentile(z, <span class="dv">95</span>))</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    plt.xlim(<span class="op">-</span><span class="fl">75.3</span>, <span class="op">-</span><span class="fl">74.9</span>)</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="fl">39.85</span>, <span class="fl">40.15</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'</span><span class="sc">{</span>crime<span class="sc">}</span><span class="ss"> 2023'</span>, size<span class="op">=</span><span class="dv">33</span>, color<span class="op">=</span>colors(k))</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/var/folders/tf/c5gvkllj6dn72kwhbbxxgcm40000gn/T/ipykernel_26683/3033318570.py:18: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
   colors = plt.cm.get_cmap('viridis', len(crimes_names))
@@ -354,6 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -595,7 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">© Yiming Yan, 2023</div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/MUSA-550-Fall-2023/final-project-yiming-yan/blob/main/analysis/crime-by-type-2023.ipynb" class="toc-action">View source</a></p></div></div></div>
+    </div>
     <div class="nav-footer-right">This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
