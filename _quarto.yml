@@ -38,6 +38,7 @@ website:
       - section: analysis/index.qmd
         contents:
           - analysis/crime-by-type-2023.ipynb
+          - analysis/crime-year-trends.ipynb
 
 format:
   html:
