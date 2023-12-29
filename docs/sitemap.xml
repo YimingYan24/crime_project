@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/index.html</loc>
-    <lastmod>2023-12-29T00:53:11.260Z</lastmod>
+    <lastmod>2023-12-29T02:34:47.398Z</lastmod>
   </url>
   <url>
-    <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/analysis/data-analysis.html</loc>
-    <lastmod>2023-12-29T00:53:10.254Z</lastmod>
+    <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/analysis/ml.html</loc>
+    <lastmod>2023-12-29T02:34:46.431Z</lastmod>
   </url>
   <url>
     <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/analysis/crime-year-trends.html</loc>
-    <lastmod>2023-12-29T00:53:09.975Z</lastmod>
+    <lastmod>2023-12-29T02:34:45.386Z</lastmod>
+  </url>
+  <url>
+    <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/analysis/data-analysis.html</loc>
+    <lastmod>2023-12-29T02:34:45.664Z</lastmod>
   </url>
   <url>
     <loc>https://musa-550-fall-2023.github.io/final-project-yiming-yan/analysis/crime-by-type-2023.html</loc>
-    <lastmod>2023-12-29T00:53:10.873Z</lastmod>
+    <lastmod>2023-12-29T02:34:47.045Z</lastmod>
   </url>
 </urlset>

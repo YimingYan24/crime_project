@@ -39,6 +39,7 @@ website:
         contents:
           - analysis/crime-by-type-2023.ipynb
           - analysis/crime-year-trends.ipynb
+          - analysis/ml.ipynb
 
 format:
   html:
