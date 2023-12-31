@@ -172,6 +172,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Clustering and Prediction</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+ <span class="menu-text">crime_map.html</span>
+  </li>
       </ul>
   </li>
     </ul>
@@ -214,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Inspired by: <a href="https://carlessanchezalonso.github.io/2021/philadelphia-crime/">Exploratory Data Analysis of Philadelphia Crime Data</a></em></p>
 <section id="quick-overview-of-crime-data" class="level3">
 <h3 class="anchored" data-anchor-id="quick-overview-of-crime-data">Quick Overview of Crime Data</h3>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -224,7 +227,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>incidents <span class="op">=</span> pd.read_csv(<span class="st">'../data/incidents_part1_part2.csv'</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>incidents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
@@ -517,6 +520,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <p><img src="crime-by-type-2023_files/figure-html/cell-5-output-13.png" class="img-fluid"></p>
 </div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>incidents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">objectid</th>
+<th data-quarto-table-cell-role="th">dc_dist</th>
+<th data-quarto-table-cell-role="th">psa</th>
+<th data-quarto-table-cell-role="th">dispatch_date_time</th>
+<th data-quarto-table-cell-role="th">dispatch_date</th>
+<th data-quarto-table-cell-role="th">dispatch_time</th>
+<th data-quarto-table-cell-role="th">hour</th>
+<th data-quarto-table-cell-role="th">dc_key</th>
+<th data-quarto-table-cell-role="th">location_block</th>
+<th data-quarto-table-cell-role="th">ucr_general</th>
+<th data-quarto-table-cell-role="th">text_general_code</th>
+<th data-quarto-table-cell-role="th">point_x</th>
+<th data-quarto-table-cell-role="th">point_y</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lng</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>151849</td>
+<td>22</td>
+<td>NaN</td>
+<td>2018-12-08 07:16:00+00</td>
+<td>2018-12-08</td>
+<td>02:16:00</td>
+<td>2.0</td>
+<td>2.018221e+11</td>
+<td>N 29th St &amp; Ridge Ave</td>
+<td>300</td>
+<td>Robbery No Firearm</td>
+<td>-75.180807</td>
+<td>39.986800</td>
+<td>39.986800</td>
+<td>-75.180807</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>151850</td>
+<td>16</td>
+<td>NaN</td>
+<td>2018-07-12 01:26:00+00</td>
+<td>2018-07-11</td>
+<td>21:26:00</td>
+<td>21.0</td>
+<td>2.018160e+11</td>
+<td>400 BLOCK N 50th St</td>
+<td>400</td>
+<td>Aggravated Assault No Firearm</td>
+<td>-75.220113</td>
+<td>39.964369</td>
+<td>39.964369</td>
+<td>-75.220113</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>151851</td>
+<td>14</td>
+<td>NaN</td>
+<td>2018-02-26 06:28:00+00</td>
+<td>2018-02-26</td>
+<td>01:28:00</td>
+<td>1.0</td>
+<td>2.018140e+11</td>
+<td>N 20th St &amp; Wyncote Ave</td>
+<td>300</td>
+<td>Robbery Firearm</td>
+<td>-75.150925</td>
+<td>40.057370</td>
+<td>40.057370</td>
+<td>-75.150925</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>151853</td>
+<td>17</td>
+<td>NaN</td>
+<td>2018-02-20 01:02:00+00</td>
+<td>2018-02-19</td>
+<td>20:02:00</td>
+<td>20.0</td>
+<td>2.018170e+11</td>
+<td>2700 BLOCK Reed St</td>
+<td>400</td>
+<td>Aggravated Assault Firearm</td>
+<td>-75.189692</td>
+<td>39.935738</td>
+<td>39.935738</td>
+<td>-75.189692</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>151854</td>
+<td>24</td>
+<td>NaN</td>
+<td>2018-09-20 23:31:00+00</td>
+<td>2018-09-20</td>
+<td>19:31:00</td>
+<td>19.0</td>
+<td>2.018241e+11</td>
+<td>3500 BLOCK FRANKFORD AVE</td>
+<td>500</td>
+<td>Burglary Residential</td>
+<td>-75.102406</td>
+<td>39.997427</td>
+<td>39.997427</td>
+<td>-75.102406</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>incidents<span class="op">=</span>incidents.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
